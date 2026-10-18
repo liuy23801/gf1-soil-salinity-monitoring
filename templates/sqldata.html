@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="UTF-8">
+    <title>数据列表</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/fonts/icomoon.css">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/dijit/calcite.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/esri/esri.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/dijit/themes/claro/claro.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.43/esri/css/esri.css">
+</head>
+
+<body style="font-size:23px;color:white;">
+   <div class="viewport">
+       <div style="margin-top:90px;">
+            <center>
+
+    <a href="/add/" style="color:green;text-decoration: underline; ">数据添加</a>
+    <hr>
+    <table border="1px" width="1800px">
+        <tr style="text-align:center">
+            <th>Id</th>
+            <th>采样地</th>
+            <th>有机质</th>
+            <th>全氮</th>
+            <th>总磷</th>
+            <th>含水率</th>
+            <th>全钾量</th>
+            <th>水溶性盐</th>
+            <th>经度（X）</th>
+            <th>纬度（Y）</th>
+            <th>操作</th>
+        </tr>
+        {% for i in userlist %}
+        <tr style="text-align:center">
+            <td>{{ i.Id }}</td>
+            <td>{{ i.采样地 }}</td>
+            <td>{{ i.有机质 }}</td>
+            <td>{{ i.全氮 }}</td>
+            <td>{{ i.总磷 }}</td>
+            <td>{{ i.含水率 }}</td>
+            <td>{{ i.全钾量 }}</td>
+            <td>{{ i.水溶性盐_1 }}</td>
+            <td>{{ i.X }}</td>
+            <td>{{ i.Y }}</td>
+            <td><a href="/del?Id={{ i.Id }}" style="color:green;text-decoration: underline; ">删除</a> | <a href="/cha?Id={{ i.Id }}" style="color:green;text-decoration: underline; ">更改</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    </center>
+    <div>
+        <a href="/index">
+        <button style="margin-left:90%;margin-top:2%;width:100px;height:40px;font-size:15px;">返回系统</button>
+    </a>
+    </div>
+       </div>
+
+</div>
+
+</body>
+</html>

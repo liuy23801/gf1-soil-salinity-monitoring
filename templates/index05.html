@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地图数据可视化</title>
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/fonts/icomoon.css">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/dijit/calcite.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/esri/esri.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/dijit/themes/claro/claro.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.43/esri/css/esri.css">
+<!--    <script src="https://js.arcgis.com/3.43/"></script>-->
+</head>
+<body>
+    <div class="viewport" >
+
+        <div class="C1">
+            <div class="sales panel" style="top: 35px; width:1500px;height:50px;margin-left:110px; ">
+                <div class="inner">
+                    <button style="width:80px;margin-left:50px;height:45px;background-color:transparent;color:white;font-size:20px;" value="全图" id="quantu">全图</button>
+                    <button style="width:120px;height:40px;margin-top:-30px;margin-left:150px;background-color:transparent;color:white;font-size:20px;" id="qian">前一视图</button>
+                    <button style="width:120px;height:40px;margin-top:-30px;margin-left:290px;background-color:transparent;color:white;font-size:20px;" id="hou">后一视图</button>
+                    <button style="width:80px;height:40px;margin-top:-30px;margin-left:430px;background-color:transparent;color:white;font-size:20px;" id="da">放大</button>
+                    <button style="width:80px;height:40px;margin-top:-30px;margin-left:530px;background-color:transparent;color:white;font-size:20px;" id="xiao">缩小</button>
+                    <button style="width:80px;height:40px;margin-top:-30px;margin-left:630px;background-color:transparent;color:white;font-size:20px;" id="manyou">漫游</button>
+                    <button style="width:120px;height:40px;margin-top:-30px;margin-left:730px;background-color:transparent;color:white;font-size:20px;" id="mianji">面积测算</button>
+                    <button style="width:120px;height:40px;margin-top:-28px;margin-left:870px;background-color:transparent;color:white;font-size:20px;" id="clear">清空</button>
+
+                </div>
+            </div>
+
+            <div class="sales panel" style="top: 15px; width:1500px;height:860px;margin-left:110px; ">
+                <div class="inner">
+
+<!--                    <button style="width:30px;height:20px;">缓冲区</button>-->
+                    <div class="map" id="map" style="margin-top: 10px;height: 750px;width: 1400px;margin-left:10px;">
+<!--                          <div id="legendDiv" style=""></div>-->
+                    </div>
+                    <div id="basemapGallery" ></div>
+
+                </div>
+            </div>
+            <div class="bookmark-container" style="background: #ffffff;border-radius: 4px;border: 1px solid #eeeeee;bottom: 730px;
+            color: #444;height: 140px;;font-family: arial;left: 5px;margin: 5px;padding: 10px;position: absolute;text-align: left;width: 260px;z-index: 40;">
+                <h4 style="margin-left:70px;font-size:18px;margin-top:-10px;">书签标注</h4>
+                <div id="bookmarks" style="color:white;"></div>
+             </div>
+
+            <div id="legend1" style="background: transparent;border-radius: 4px;border: 1px solid #eeeeee;bottom: 250px;
+            color: black;height: 140px;font-family: arial;left: 380px;margin: 5px;padding: 10px;position: absolute;text-align: left;width: 160px;height:280px;z-index: 40;">
+                <h4 style="margin-left:50px;font-size:18px;margin-top:-10px;">图例</h4>
+                <div id="legendDiv" style="color:white;"></div>
+             </div>
+
+            <div id="info" class="esriSimpleSlider" style="font-size:20px;">
+                    请绘制一个多边形，用于几何服务中面积与周长测量操作：
+                    <br>
+                    <span class="label">面积:</span> <br><span id="area"></span>
+                     <br>
+                    <span class="label">周长:</span> <br><span id="length"></span>
+            </div>
+            <div id="info1" class="esriSimpleSlider" style="font-size:28px;">
+<!--                <div>Select a shape then draw on map to add graphic</div>-->
+                <h6 style="color:black;">请选择一个形状，然后在地图上绘制添加图形</h6>
+                <button id="Point" style="font-size:18px;">点</button>
+                <button id="Multipoint" style="font-size:18px;">多点</button>
+                <button id="Line" style="font-size:18px;">线</button>
+                <button id="Polyline" style="font-size:18px;">多段线</button>
+                <button id="FreehandPolyline" style="font-size:18px;">自由多段线</button>
+                <button id="Triangle" style="font-size:18px;">三角形</button>
+                <button id="Extent" style="font-size:18px;">矩形</button>
+                <button id="Circle" style="font-size:18px;">圆</button>
+                <button id="Ellipse" style="font-size:18px;">椭圆</button>
+                <button id="Polygon" style="font-size:18px;">多边形</button>
+                <button id="FreehandPolygon" style="font-size:18px;">自由多边形</button>
+            </div>
+
+        </div>
+
+
+<!--        <div class="sales panel" style=" width:1500px;height:50px;margin-bottom:50px; ">-->
+<!--                <div class="inner">-->
+
+<!--                </div>-->
+<!--        </div>-->
+
+
+        <div id="button1" style="margin-top:-15px;">
+
+
+
+            <div class="sales panel" style="top: 205px; width:300px;height:100px;margin-left:50px; ">
+                <div class="inner">
+                    <button style="width:250px;height:70px;margin-left:-15px;margin-top:-20px;background-color:transparent;color:white;font-size:25px;" value="S1" id="S1">土壤盐分指数(S1)</button>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 235px; width:300px;height:100px;margin-left:50px; ">
+                <div class="inner">
+                    <button style="width:250px;height:70px;margin-left:-15px;margin-top:-10px;background-color:transparent;color:white;font-size:25px;" value="S5" id="S5">土壤盐分指数(S5)</button>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 265px; width:300px;height:100px;margin-left:50px; ">
+                <div class="inner">
+                    <button style="width:250px;height:70px;margin-left:-15px;margin-top:-10px;background-color:transparent;color:white;font-size:25px;" value="SAVI" id="SI_T">土壤调节植被指数(SI_T)</button>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 295px; width:300px;height:100px;margin-left:50px; ">
+                <div class="inner">
+                    <button style="width:250px;height:70px;margin-left:-15px;margin-top:-10px;background-color:transparent;color:white;font-size:25px;" value="关闭图层" id="close">关闭图层</button>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 325px; width:300px;height:100px;margin-left:50px; ">
+                <div class="inner">
+                    <a href="/index"><button style="width:250px;height:70px;margin-left:-40px;margin-top:-10px;background-color:transparent;color:white;font-size:25px;">返回主页</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/index.js"></script>
+<script>
+    document.getElementById('S1').addEventListener('click', function() {
+    var div = document.getElementById('legend1');
+    div.style.display = 'none'; // 使用这行代码让div消失
+    });
+
+    document.getElementById('S5').addEventListener('click', function() {
+    var div = document.getElementById('legend1');
+    div.style.display = 'none'; // 使用这行代码让div消失
+    });
+
+    document.getElementById('SI_T').addEventListener('click', function() {
+    var div = document.getElementById('legend1');
+    div.style.display = 'block'; // 使用这行代码让div消失
+    });
+</script>
+<script src="/static/js/china.js"></script>
+<script src="/static/js/mymap.js"></script>
+<script src="https://js.arcgis.com/3.43/"></script>
+<script src="/static/js/map5.js"></script>
+</html>

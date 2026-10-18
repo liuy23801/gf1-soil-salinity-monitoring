@@ -1,0 +1,31 @@
+# Dependency inventory derived from the historical source imports.
+# Versions are not locked; a complete restored environment is not yet verified.
+
+# Web application and MySQL access
+Flask
+PyMySQL
+
+# Data processing and model experiments
+numpy
+pandas
+scipy
+scikit-learn
+openpyxl
+
+# Charts and desktop image previews
+matplotlib
+seaborn
+Pillow
+
+# Geospatial and image processing (also imported by text.py)
+rasterio
+geopandas
+opencv-python
+
+# Imports retained in the standalone userdata.py experiment
+Flask-SQLAlchemy
+SQLAlchemy
+
+# Install GDAL / osgeo separately using a matching GIS binary distribution.
+# See README.md; Windows users can use conda-forge.
+# tkinter, json, os and subprocess are Python standard-library modules.

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地图数据可视化</title>
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/fonts/icomoon.css">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/dijit/calcite.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/esri/esri.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/dijit/themes/claro/claro.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.43/esri/css/esri.css">
+<!--    <script src="https://js.arcgis.com/3.43/"></script>-->
+</head>
+
+<body>
+    <div class="viewport">
+
+        <div class="left" style="width:40%;margin-top:10px">
+
+        <div class="column">
+            <div class="overview panel">
+                <div class="inner">
+                    <div class="item" >
+                        <h3 style="font-size:20px;">研究区：新疆巴音郭楞蒙古自治州库尔勒市</h3>
+                        <h3 style="font-size:18px;">经度：北纬41°45'20.24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;纬度：东经86° 8'51.16</h3>
+                    </div>
+                    <div class="item">
+
+                    </div>
+                    <div class="item">
+
+                    </div>
+                    <div class="item">
+
+                    </div>
+                </div>
+            </div>
+            <!--监控-->
+            <div class="monitor panel">
+                <div class="inner">
+                    <div class="tabs">
+                        <a href="javascript:;" data-index="0" class="active" style="color:white;text_align:center;">实地土壤采样数据</a>
+                    </div>
+                    <div class="content" style="display: block;">
+                        <div class="head">
+                            <span class="col">采样点名称</span>
+                            <span class="col" style="margin-left:30px">水溶性盐总量（全盐量）</span>
+                            <span class="col">采样时间</span>
+                        </div>
+                        <div class="marquee-view">
+                            <div class="marquee" style="margin-left:10px">
+                                <div class="row">
+                                    <span class="col">库梨1</span>
+                                    <span class="col" style="margin-left:50px">0.381 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">库梨2</span>
+                                    <span class="col" style="margin-left:50px">0.410 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">库梨3</span>
+                                    <span class="col" style="margin-left:50px">0.332 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">鸡空</span>
+                                    <span class="col" style="margin-left:50px">0.405 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">地膜5</span>
+                                    <span class="col" style="margin-left:50px">0.299 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">丰级6</span>
+                                    <span class="col" style="margin-left:50px">0.298 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">麦地7</span>
+                                    <span class="col" style="margin-left:50px">0.441 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">地膜8</span>
+                                    <span class="col" style="margin-left:50px">0.350 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">麦地9</span>
+                                    <span class="col" style="margin-left:50px">0.324 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">沙土10</span>
+                                    <span class="col" style="margin-left:50px">0.345 g/kg</span>
+                                    <span class="col">2023.5.15</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">2沙1</span>
+                                    <span class="col" style="margin-left:50px">0.452 g/kg</span>
+                                    <span class="col">2023.5.16</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">2苇2</span>
+                                    <span class="col" style="margin-left:50px">0.415 g/kg</span>
+                                    <span class="col">2023.5.16</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">2孔雀河3</span>
+                                    <span class="col" style="margin-left:50px">0.414 g/kg</span>
+                                    <span class="col">2023.5.16</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">2膜4</span>
+                                    <span class="col" style="margin-left:50px">0.398 g/kg</span>
+                                    <span class="col">2023.5.16</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">2辣5</span>
+                                    <span class="col" style="margin-left:50px">0.429 g/kg</span>
+                                    <span class="col">2023.5.16</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">2合作社7</span>
+                                    <span class="col" style="margin-left:50px">0.354 g/kg</span>
+                                    <span class="col">2023.5.16</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                            <div class="row">
+                                    <span class="col">3地膜1</span>
+                                    <span class="col" style="margin-left:50px">0.426 g/kg</span>
+                                    <span class="col">2023.5.17</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                            <div class="row">
+                                    <span class="col">3盐2</span>
+                                    <span class="col" style="margin-left:50px">0.479 g/kg</span>
+                                    <span class="col">2023.5.17</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col">3孔雀河3</span>
+                                    <span class="col" style="margin-left:50px">0.314 g/kg</span>
+                                    <span class="col">2023.5.17</span>
+                                    <span class="icon-dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--点位-->
+            <div class="point panel">
+                <div class="inner">
+                    <h3>影响因子统计</h3>
+                    <div class="chart">
+                        <div class="pie"></div>
+                        <div class="data">
+                            <div class="item">
+                                <h4>全氮量</h4>
+                                <span>
+                                    <i class="icon-dot" style="color: #ed3f35"></i>
+                                    点位总数
+                                </span>
+                            </div>
+                            <div class="item">
+                                <h4>有机质</h4>
+                                <span>
+                                    <i class="icon-dot" style="color: #eacf19"></i>
+                                    本月新增
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="center" style="width:50%; margin-left: 40px;">
+
+        <div class="column">
+            <!-- 地图 -->
+            <div class="map" style="width:720px;height:auto">
+                <h3>
+                    <span class="icon-cube"></span>
+                    可视化界面
+                </h3>
+                <div class="chart" >
+                    <!-- <div class="geo"></div> -->
+                    <div class="map1" id="map1" >
+                </div>
+            </div>
+            <!-- 用户 -->
+            <div class="users panel" style="width:720px;">
+                <div class="inner" >
+                    <h3>土壤盐分反演指数（Avg）</h3>
+                    <div class="chart">
+                        <div class="bar"></div>
+                        <div class="data">
+                            <div class="item">
+                                <h4>0.4217</h4>
+                                <span >
+                                    <i class="icon-dot" style="color: #ed3f35"></i>
+                                    麦地农田
+                                </span>
+                            </div>
+                            <div class="item">
+                                <h4>0.3124</h4>
+                                <span>
+                                    <i class="icon-dot" style="color: #eacf19"></i>
+                                    其他地区
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div></div>
+
+        <div class="right" style="width:50%;margin-left: 35px;margin-top:30px">
+        <div class="column">
+            <div class="order panel">
+                <div class="inner">
+                    <!-- 筛选 -->
+                    <div class="filter">
+                        <a href="javascript:;" data-key="day365" class="active">B1(蓝)</a>
+                        <a href="javascript:;" data-key="day90">B2(绿)</a>
+                        <a href="javascript:;" data-key="day30">B3(红)</a>
+                        <a href="javascript:;" data-key="day1">B4(NIR)</a>
+                    </div>
+                    <!-- 数据 -->
+                    <div class="data">
+                        <div class="item">
+                            <h4>250.843</h4>
+                            <span>
+                                <i class="icon-dot" style="color: #ed3f35;"></i>
+                                最大值
+                            </span>
+                        </div>
+                        <div class="item">
+                            <h4>167.617</h4>
+                            <span>
+                                <i class="icon-dot" style="color: #eacf19;"></i>
+                                最小值
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 销售额 -->
+            <div class="sales panel" style="top: 25px;">
+                <div class="inner">
+                    <div class="caption" >
+                        <h3>盐分指数</h3>
+                        <a href="javascript:;" class="active" data-type="year">SAVI</a>
+                        <a href="javascript:;" data-type="quarter">NDSI</a>
+                        <a href="javascript:;" data-type="month">NDVI</a>
+                        <a href="javascript:;" data-type="week">SI-T</a>
+                    </div>
+                    <div class="chart">
+                        <div class="label" style="margin-left:-10px;width:200px;">多值提取至点</div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+
+                    <div class="monitor panel" style="top: 50px;">
+                        <div class="center">
+                            <h1 style="margin-left: 95px;font-size: 30px;color: white;">菜单功能栏</h1>
+                        </div>
+                        <div class="i1" style="width: 20px;height: 120px; margin-left: -40px;margin-top: 40px;" >
+                            <a href="/index01">
+                                <img src="/static/images/图标1.png" alt="" width="50px">
+                                <h3 style="width: 120px;margin-left: -18px;">地图Web</h3>
+                            </a>
+                            
+                        </div>
+                        <div class="i2" style="width: 20px;margin-top: -120px; margin-left: 80px; " >
+                            <a href="/sqldata">
+                                <img src="/static/images/图标2.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -5px;">数据库</h3>
+                            </a>
+                        </div>
+
+                        <div class="i3" style="width: 20px;margin-top: -90px; margin-left: 200px; " >
+                            <a href="/index03">
+                                <img src="/static/images/图标3.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -5px;">预处理</h3>
+                            </a>
+                        </div>
+                        <div class="i4" style="width: 20px;margin-top: -90px; margin-left: 320px; " >
+                            <a href="/index04">
+                                <img src="/static/images/图标4.png" alt="" width="50px">
+                                <h3 style="width: 100px;margin-left: -22px;">热力图分析</h3>
+                            </a>
+                        </div>
+                        <div class="i5" style="width: 20px;margin-top: 50px; margin-left: -40px; " >
+                            <a href="/index05">
+                                <img src="/static/images/图标5.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -18px;">盐度反演</h3>
+                            </a>
+                        </div>
+                        <div class="i6" style="width: 20px;margin-top: -87px; margin-left: 80px; " >
+                            <a href="/index06">
+                                <img src="/static/images/图标6.png" alt="" width="50px">
+                                <h3 style="width: 50px;margin-left: 3px;">PLSR</h3>
+                            </a>
+                        </div>
+                        <div class="i7" style="width: 20px;margin-top: -87px; margin-left: 200px; " >
+                            <a href="/index07">
+                                <img src="/static/images/图标7.png" alt="" width="50px">
+                                <h3 style="width: 90px;text-align: center;margin-left:-20px;">图表构建</h3>
+                            </a>
+<!--                            <button style="background-color:transparent;"  >-->
+<!--                                <img src="/static/images/图标7.png" alt="" width="50px">-->
+<!--                                <h3 style="width: 70px;text-align: center;">热力图</h3>-->
+<!--                            </button>-->
+                        </div>
+                        <div class="i8" style="width: 20px;margin-top: -96px; margin-left: 320px; " >
+                            <a href="/login">
+                                <img src="/static/images/图标8.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -15px;margin-top: -5px;">退出系统</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/index.js"></script>
+
+<script src="/static/js/china.js"></script>
+<script src="/static/js/mymap.js"></script>
+<script src="https://js.arcgis.com/3.43/"></script>
+<script src="/static/js/map.js"></script>
+</html>

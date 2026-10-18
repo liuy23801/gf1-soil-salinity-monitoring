@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地图数据可视化</title>
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/tancahun.css">
+    <link rel="stylesheet" href="/static/fonts/icomoon.css">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/dijit/calcite.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/esri/esri.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/dijit/themes/claro/claro.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.43/esri/css/esri.css">
+<!--    <script src="https://js.arcgis.com/3.43/"></script>-->
+</head>
+<body>
+
+    <div class="viewport" >
+
+
+        <div class="sales panel" style="top: 75px; width:1400px;height:800px;margin-left:50px; ">
+                <div class="inner">
+                    <img style="margin-top: 10px; margin-left:10px;" src="/static/images/PLSR折线图.png" width="1240px" height="830px">
+                </div>
+        </div>
+
+
+        <!-- 弹窗 -->
+   <div id="myModal" class="modal">
+
+   <!-- 弹窗内容 -->
+    <div class="modal-content" style="font-size:19px;">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>光谱指数计算公式</h2>
+      </div>
+      <div class="modal-body">
+          &nbsp;
+        <p>归一化植被指数（NDVI）     ： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; （NIR-R）/(NIR+R)</p>
+        <p>土壤调节植被指数（SAVI）   ： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; （NIR-R）/(NIR+R+L)×（1+L）</p>
+        <p>归一化盐分差指数（NDSI）   :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; （R-NIR）/(R+NIR)</p>
+        <p>盐分指数（SI_T）          :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; （R-NIR）×100</p>
+        <p>亮度指数（BI）            :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sqrt（R×R+NIR）</p>
+        <p>盐分指数（SI）            :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sqrt（B×R）</p>
+        <p>盐分指数（SI1）           :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sqrt(G×R)</p>
+        <p>盐分指数（SI2）           :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sqrt(G²+R²+NIR²)</p>
+        <p>盐分指数（SI3）           :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sqrt(G²+R²)</p>
+        <p>盐分指数（S1）            :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B/R</p>
+        <p>盐分指数（S2）            :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（B-R）/（B+R）</p>
+        <p>盐分指数（S3）            :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（G×R）/B</p>
+        <p>盐分指数（S5）            :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（B×R）/G</p>
+        <p>盐分指数（S6）            :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（NIR×R）/G</p>
+        <p>强度指数（Int1）          :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（G+R）/2</p>
+        <p>强度指数（Int2）          :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（G+R+NIR）/2</p>
+        <p>波段1（Band1）           :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  B（0.45-0.52μm）</p>
+        <p>波段2（Band1）           :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  G（0.52-0.59μm）</p>
+        <p>波段3（Band1）           :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R（0.63-0.69μm）</p>
+        <p>波段4（Band1）           :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  NIR（0.77-0.89μm）</p>
+<!--        <p>弹窗文本...</p>-->
+      </div>
+      <div class="modal-footer">
+        <h3>*********</h3>
+      </div>
+    </div>
+
+
+    <div id="demo1"></div>
+
+   </div>
+
+        <div>
+
+
+        <div class="sales panel" style="top: 75px; margin-left:100px;width:350px;height:800px;">
+                <div class="inner">
+                    <h1 style="text-align:center;color:red;">PLSR建模</h1>
+                    <p style="color:white;">一一一一一一一一一一一一一一一一一一一一一一一</p>
+                    <button id="btn1" style="margin-left: 8px;margin-top:15px;font-size:25px;color:white;background-color:transparent;width:250px;">折线图</button>
+                    <button id="btn2" style="margin-top:30px;margin-left: 8px;font-size:25px;color:white;background-color:transparent;width:250px;">柱状图</button>
+                    <button id="btn3" style="margin-top:30px;margin-left: 8px;font-size:25px;color:white;background-color:transparent;width:250px;">散点图</button>
+                    <h1 style="text-align:center;margin-top:15px;color:red;">结果分析</h1>
+                    <p style="color:white;">一一一一一一一一一一一一一一一一一一一一一一一</p>
+<!--                    <input type="button" value="选择框" onclick="myFunction1()">-->
+                    <a href="/index06"><button id="" style="margin-top:30px;margin-left: -15px;font-size:25px;color:white;background-color:transparent;width:250px;" >PLSR相关系数</button></a>
+                    <button id="myBtn" style="margin-top:30px;margin-left: 8px;font-size:25px;color:white;background-color:transparent;width:250px;">光谱指数</button>
+                    <h1 style="text-align:center;margin-top:15px;color:red;">盐分反演</h1>
+                    <p style="color:white;">一一一一一一一一一一一一一一一一一一一一一一一</p>
+                    <div class="fanyan" style="margin-top:20px;">
+                        <div class="left" style="margin-left:-30px;">
+                            <a href="/index05"> <button style="color:white;background-color:transparent;width:130px;height:125px;font-size:20px;">反演结果</button></a>
+                        </div>
+                        <div class="right" style="margin-left:140px;margin-top:-140px;">
+                           <button style="margin-left: -6px;margin-top:15px;font-size:25px;color:white;background-color:transparent;width:120px;" id="s1" onclick="buttons1();">S1</button>
+                           <button style="margin-left: -6px;margin-top:15px;font-size:25px;color:white;background-color:transparent;width:120px;" id="s5" onclick="buttons5();">S5</button>
+                           <button style="margin-left: -6px;margin-top:15px;font-size:25px;color:white;background-color:transparent;width:120px;" id="savi" onclick="buttonsavi();">SI_T</button>
+                        </div>
+                    </div>
+
+                    <a href="/index" ><button style="margin-left: -30px;margin-top:30px;font-size:25px;color:white;background-color:transparent;width:250px;">返回系统</button></a>
+                </div>
+        </div>
+        <div>
+            <div id="reboot_pre" style="width: 450px; height: 150px; margin-left:50px; margin-right:auto; margin-top:90px; visibility:hidden; background: #F0F0F0; border:1px solid #00DB00; z-index:9999">
+			    <div style="width: 450px; height: 30px; background:#00DB00; line-height:30px;text-align: center;"><b>准备中</b></div>
+			    <br /><br />
+			    <div><p style="margin-left:50px">正在努力为您准备相关性分析操作...   还需稍候 <span id="reboot_pre_time">4</span> 秒</p></div>
+			    <br />
+			    <div><button type="button" style="width:70px; height:30px; margin-left:240px" οnclick="reboot_cancel()">取消</button></div>
+
+		    </div>
+
+		<div id="reboot_ing" style="width: 450px; height: 150px;  margin-left:50px; margin-right:auto; margin-top:-150px; visibility: hidden; background: #F0F0F0; border:1px solid #00DB00">
+			<div style="width: 450px; height: 30px; background:#00DB00; line-height:30px;text-align: center;"><b>进行中</b></div>
+			<br />
+			<div><p style="margin-left:40px">分析操作正在进行中...   还需稍候 <span id="reboot_ing_time">10</span> 秒</p></div>
+			<br />
+			<div  id="progress_reboot" style="margin-left:40px;color:#00DB00;font-family:Arial;font-weight:bold;height:18px">|</div>
+			<br />
+		</div>
+      </div>
+
+     </div>
+
+
+    </div>
+
+</body>
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/index.js"></script>
+
+<script src="/static/js/china.js"></script>
+<script src="/static/js/mymap.js"></script>
+<script src="https://js.arcgis.com/3.43/"></script>
+<script>
+
+    // 1.获取事件源
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var btn3 = document.getElementById("btn3");
+        var img = document.querySelector("img");
+        // var isShow = true;
+        // 2.绑定事件
+        btn1.onclick = function() {
+            // 3. 事件驱动程序
+
+            if(btn1.innerHTML === "Person结果隐藏"){
+                img.style.display = "none";
+                btn1.innerHTML = "Person结果显示";
+                // isShow = false;
+            } else {
+            img.src = "/static/images/PLSR折线图.png"
+                img.style.display = "block";
+                btn1.innerHTML = "折线图";
+
+                // isShow = true;
+            }
+        }
+
+        btn2.onclick = function() {
+            // 3. 事件驱动程序
+
+            if(btn2.innerHTML === "Spearman结果隐藏"){
+                img.style.display = "none";
+                btn2.innerHTML = "Spearman结果显示";
+
+                // isShow = false;
+            } else {
+            img.src = "/static/images/PLSR柱状图.png"
+                img.style.display = "block";
+                btn2.innerHTML = "柱状图";
+                // isShow = true;
+            }
+        }
+
+        btn3.onclick = function() {
+            // 3. 事件驱动程序
+
+            if(btn3.innerHTML === "Kendall结果隐藏"){
+                img.style.display = "none";
+                btn3.innerHTML = "Kendall结果显示";
+
+                // isShow = false;
+            } else {
+            img.src = "/static/images/PLSR饼状图.png"
+                img.style.display = "block";
+                btn3.innerHTML = "饼状图";
+                // isShow = true;
+            }
+        }
+
+
+        // 获取弹窗
+var modal = document.getElementById('myModal');
+
+// 打开弹窗的按钮对象
+var btn = document.getElementById("myBtn");
+
+// 获取 <span> 元素，用于关闭弹窗
+var span = document.querySelector('.close');
+
+// 点击按钮打开弹窗
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// 点击 <span> (x), 关闭弹窗
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// 在用户点击其他地方时，关闭弹窗
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+    function myFunction1(){
+            var x;
+            var r=confirm("正在分析，请稍后");
+            if (r==true){
+                x="你按下了\"确定\"按钮!";
+            }
+            else{
+                x="你按下了\"取消\"按钮!";
+            }
+            document.getElementById("demo1").innerHTML=x;
+        }
+
+
+
+                var cancel_flag = 0;
+				var already = 0;
+
+				/* 重启按钮的单击操作 */
+				function reboot(){
+					if(confirm("准备进行相关性分析，请稍后...")){
+						document.getElementById("reboot_pre_time").innerHTML = 5;
+						document.getElementById("reboot_ing_time").innerHTML = 10;
+						document.all.progress_reboot.innerHTML = "|||";
+						download_flag = 0;
+						cancel_flag = 0;
+						already = 0;
+						setTimeout("showDiv('reboot_pre')",500);
+						delayPre_reboot("reboot_pre_time");
+					}
+				}
+				/* 重启准备弹窗计时 5秒 */
+				function delayPre_reboot(str) {
+					if(!cancel_flag){
+						var delay = document.getElementById(str).innerHTML;
+						if(delay > 0) {
+							delay--;
+							document.getElementById(str).innerHTML = delay;
+							setTimeout("delayPre_reboot('reboot_pre_time')", 1000);
+						} else {
+							hideDiv("reboot_pre");
+							setTimeout("showDiv('reboot_ing')",500);
+							delayDo_reboot("reboot_ing_time");
+						}
+					}
+				}
+				/* 重启进行中弹窗计时 15秒 */
+				function delayDo_reboot(str){
+					display_reboot(100);
+					var delay = document.getElementById(str).innerHTML;
+					if(delay > 0) {
+						delay--;
+						document.getElementById(str).innerHTML = delay;
+						setTimeout("delayDo_reboot('reboot_ing_time')", 1000);
+					} else {
+						hideDiv("reboot_ing");
+						alert("分析成功！请点击结果分析进行查看");
+					}
+				}
+				/* 重启准备时 取消按钮的事件*/
+				function reboot_cancel(){
+					cancel_flag = 1;
+					hideDiv("reboot_pre");
+					alert("您已经成功取消了分析操作！");
+				}
+				/* 显示弹窗 */
+				function showDiv (str){
+					document.getElementById(str).style.visibility = "visible";
+				}
+				/* 隐藏弹窗 */
+				function hideDiv (str){
+					document.getElementById(str).style.visibility = "hidden";
+				}
+
+				/* 重启进行中弹窗计时，缓冲条的移动*/
+				function display_reboot(max){
+					 already++;
+					 var dispObj = document.all.progress_reboot;
+					 dispObj.style.width = 100.0*already/max+"px";
+					 document.all.progress_reboot.innerHTML += "||||||||";
+					 var timer = window.setTimeout("display("+max+")",1000);
+					 if (already >= max){
+						window.clearTimeout(timer);
+					 }
+				}
+
+
+    function buttons1(){
+            window.confirm("已在本文件目录下生成生成S1土壤盐分反演影像！");
+        }
+    function buttons5(){
+            window.confirm("已在本文件目录下生成生成S5土壤盐分反演影像！");
+        }
+    function buttonsavi(){
+            window.confirm("已在本文件目录下生成生成SAVI土壤盐分反演影像！");
+        }
+    </script>
+
+<!--<script src="/static/js/map2.js"></script>-->
+</html>

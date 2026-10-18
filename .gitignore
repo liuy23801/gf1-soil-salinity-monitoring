@@ -1,0 +1,73 @@
+# Python caches and build output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Local Python environments and editor settings
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+
+# Local credentials and configuration
+.env
+.env.*
+!.env.example
+config.local.py
+config.local.json
+local_settings.py
+*.pem
+*.key
+
+# Remote-sensing source data and generated GIS datasets
+*.tif
+*.tiff
+*.TIF
+*.TIFF
+*.dat
+*.ovr
+*.tfw
+*.aux.xml
+*.tif.xml
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.sbn
+*.sbx
+*.gdb/
+
+# Database backups, local uploads and logs
+*.sql
+*.sql.gz
+*.db
+*.sqlite
+*.sqlite3
+uploads/
+logs/
+*.log
+
+# Large local archives and recordings
+*.zip
+*.rar
+*.7z
+*.mp4
+*.avi
+*.mov
+
+# Operating-system and temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+*.tmp
+
+# Keep source code, HTML, CSS, JS, fonts, CSV samples and PNG/JPG assets.
+# These rules do not remove secrets embedded in tracked source files.

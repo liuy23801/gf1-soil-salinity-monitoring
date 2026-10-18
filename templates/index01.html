@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地图数据可视化</title>
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/fonts/icomoon.css">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/dijit/calcite.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/esri/esri.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/dijit/themes/claro/claro.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.43/esri/css/esri.css">
+<!--    <script src="https://js.arcgis.com/3.43/"></script>-->
+</head>
+<body>
+    <div class="viewport" >
+<div id="BasemapToggle" style="position: absolute;top: 20px;right: 20px;z-index: 50;"></div>
+        <div class="map" id="map" style="margin-top: 15px;height: 960px;width: 1500px;">
+
+            <div id="search" style="display: block;position: absolute;z-index: 100px;top: 20px;left: 74px;"></div>
+            <div id="lable" style="margin-top: 370px;width:220px;height: 120px;background-color: azure;font-size:16px;;position: absolute;left: 1290px;border-radius: 10%;text-align: center;top: 570px; z-index: 99;"></div>
+            <div>
+                <select id="selector"  style="width:180px;left:500px;margin-top:-33px;height:30px;font-size:15px;position: absolute;z-index: 50">
+                <option value="库梨1">库梨1</option>
+                <option value="库梨2">库梨2</option>
+                <option value="库梨3">库梨3</option>
+                <option value="鸡空">鸡空</option>
+                <option value="地膜5">地膜5</option>
+                <option value="丰级6">丰级6</option>
+                <option value="麦地7">麦地7</option>
+                <option value="地膜8">地膜8</option>
+                <option value="麦地9">麦地9</option>
+                <option value="沙土10">沙土10</option>
+                <option value="2沙1">2沙1</option>
+                <option value="2苇2">2苇2</option>
+                <option value="2孔雀河3">2孔雀河3</option>
+                <option value="2膜4">2膜4</option>
+                <option value="2辣5">2辣5</option>
+                <option value="2合作社7">2合作社7</option>
+                <option value="3地膜1">3地膜1</option>
+                <option value="3盐2">3盐2</option>
+                <option value="3孔雀河3">3孔雀河3</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="right" style="width:30%;margin-left: 60px;margin-top:30px">
+        <div class="column">
+            <div class="order panel">
+                <div class="inner">
+                    <!-- 筛选 -->
+                    <div class="filter">
+                        <a href="/index05"><button style="background-color:transparent;color:white;font-size:22px;">土壤盐分反演</button></a>
+<!--                        border-style:none;-->
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <h3>主视图：</h3>&nbsp;
+                        <button id="HomeButton" style="margin-top:90px"></button>
+<!--                        <div  style=""></div>-->
+                    </div>
+                    <!-- 数据 -->
+                    <div class="data">
+                        <div class="item">
+
+                        </div>
+                        <div class="item">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 销售额 -->
+            <div class="sales panel" style="top: 25px;height:280px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        <h1>研究区介绍 : </h1> &nbsp;<h3 style="margin-top:2px"> 库尔勒市</h3><br>
+                    </div>
+                    <div class="chart">
+                        <p style="font-size:18px;color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是新疆巴音郭楞蒙古自治州的地级行政区首府，位于新疆中部、天山南麓、塔里木盆地东北边缘，北倚天山支脉，南临世界第二大沙漠，塔克拉玛干沙漠。
+                            是古丝绸之路中道的咽喉之地和西域文化的发源地之一，是南北疆重要的交通枢纽和物资集散地，也是该地区重要的政治、经济、文化中心。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+                    <div class="monitor panel" style="top: 50px;height:400px;">
+                        <div class="center">
+                            <h1 style="margin-left: 10px;font-size: 30px;color: white;">地图Web功能栏</h1>
+                        </div>
+                        <div class="i1" style="width: 20px;height: 120px; margin-left: -65px;margin-top: 40px;" >
+                            <a href="/index01">
+                                <img src="/static/images/图标1.png" alt="" width="50px">
+                                <h3 style="width: 120px;margin-left: -18px;">地图Web</h3>
+                            </a>
+
+                        </div>
+                        <div class="i2" style="width: 20px;margin-top: -120px; margin-left: 55px; " >
+                            <a href="/sqldata">
+                                <img src="/static/images/图标2.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -5px;">数据库</h3>
+                            </a>
+                        </div>
+
+                        <div class="i3" style="width: 20px;margin-top: -90px; margin-left: 160px; " >
+                            <a href="#3">
+                                <img src="/static/images/图标3.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -15px;">地理分析</h3>
+                            </a>
+                        </div>
+                        <div class="i4" style="width: 20px;margin-top: -90px; margin-left: 275px; " >
+                            <a href="#4">
+                                <img src="/static/images/图标4.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -5px;">缓冲区</h3>
+                            </a>
+                        </div>
+                        <div class="i5" style="width: 20px;margin-top: 50px; margin-left: -65px; " >
+                            <a href="#5">
+                                <img src="/static/images/图标5.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -18px;">盐度反演</h3>
+                            </a>
+                        </div>
+                        <div class="i6" style="width: 20px;margin-top: -87px; margin-left: 55px; " >
+                            <a href="/index06">
+                                <img src="/static/images/图标6.png" alt="" width="50px">
+                                <h3 style="width: 50px;margin-left: 3px;">PLSR</h3>
+                            </a>
+                        </div>
+                        <div class="i7" style="width: 20px;margin-top: -87px; margin-left: 160px; " >
+                            <a href="#7">
+                                <img src="/static/images/图标7.png" alt="" width="50px">
+                                <h3 style="width: 50px;text-align: center;">其他</h3>
+                            </a>
+                        </div>
+                        <div class="i8" style="width: 20px;margin-top: -96px; margin-left: 275px; " >
+                            <a href="/index">
+                                <img src="/static/images/图标8.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -15px;margin-top: -5px;">返回主页</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/index.js"></script>
+
+<script src="/static/js/china.js"></script>
+<script src="/static/js/mymap.js"></script>
+<script src="https://js.arcgis.com/3.43/"></script>
+<script src="/static/js/map1.js"></script>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地图数据可视化</title>
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/fonts/icomoon.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/dijit/calcite.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/esri/esri.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/dijit/themes/claro/claro.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.43/esri/css/esri.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+<!--    <script src="https://js.arcgis.com/3.43/"></script>-->
+</head>
+
+<body>
+    <div class="viewport">
+        <div class="sales panel" style="top: 25px;width:700px;height:900px;">
+            <input type="file" id="fileInput" style="display:none" onchange="handleFiles(this.files)"/>
+            <button onclick="uploadFile()" style="width:200px;height:50px;background-color:transparent;color:white;font-size:22px;" >选择文件</button>
+            <a href="/index"><button style="width:200px;height:50px;background-color:transparent;color:white;font-size:22px;">返回主页</button></a><br><br>
+            <button id="runPythonButton" onclick="showCountdownPopup()" style="width:430px;height:50px;background-color:transparent;color:white;font-size:22px;">辐射定标与大气校正</button>
+            <a href="/index06"><button  style="width:430px;margin-left:-23px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">PLSR相关系数</button></a>
+            <button id="runPython_chuliButton"  style="width:430px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">预处理结果</button>
+            <button onclick="uploadFile()"  style="width:430px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">选择tif格式文件</button>
+            <button id="runPython_tifshpButton" onclick="showCountdownPopup1()" style="width:430px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">tif文件转栅格(shp)文件</button>
+            <button id="runPython_shpresultButton" style="width:430px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">矢量转栅格结果</button>
+            <button id="runPython_tubiaoButton"  style="width:430px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">雷达图</button>
+            <button id="runPython_tubiao1Button"  style="width:430px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">折线图</button>
+            <button id="runPython_tubiao2Button"  style="width:430px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">柱状图</button>
+            <a href="/index02"><button id=""  style="width:430px;margin-left:-23px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">采样点灰度值</button></a>
+            <a href="/index03"><button  style="width:430px;margin-left:-23px;margin-top:20px;height:50px;background-color:transparent;color:white;font-size:22px;">返回预处理页面</button></a>
+<!--                  <img id="tif-image" src="H:\pythontext\42_flack\Kerle11.tif" >-->
+<!--                  <canvas id="tif-canvas"></canvas>-->
+
+
+        </div>
+<!--                 <div id="map" class="map" style="width:400px;height:400px;"></div>-->
+    </div>
+</body>
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/index.js"></script>
+
+<!--<script src="path/to/tif.min.js"></script>-->
+<!--<script src="path/to/leaflet.js"></script>-->
+
+<!--<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiff.js/2.2.0/tiff.min.js"></script>
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+
+<!--<script src="tif_display.js"></script>-->
+<!--<script src="https://unpkg.com/leaflet-geotiff@0.5.0/leaflet-geotiff.js"></script>-->
+<script type="text/javascript">
+        document.getElementById('runPythonButton').addEventListener('click', function() {
+         fetch('/run-python-script', { method: 'POST' })
+         .then(response => response.json())
+         .then(data => console.log(data));
+         });
+
+         document.getElementById('runPython_tubiaoButton').addEventListener('click', function() {
+         fetch('/runPython_tubiaoButton', { method: 'POST' })
+         .then(response => response.json())
+         .then(data => console.log(data));
+         });
+
+         document.getElementById('runPython_tubiao1Button').addEventListener('click', function() {
+         fetch('/runPython_tubiao1Button', { method: 'POST' })
+         .then(response => response.json())
+         .then(data => console.log(data));
+         });
+
+         document.getElementById('runPython_tubiao2Button').addEventListener('click', function() {
+         fetch('/runPython_tubiao2Button', { method: 'POST' })
+         .then(response => response.json())
+         .then(data => console.log(data));
+         });
+
+        document.getElementById('runPython_chuliButton').addEventListener('click', function() {
+         fetch('/runPython_chuliButton', { method: 'POST' })
+         .then(response => response.json())
+         .then(data => console.log(data));
+         });
+
+         document.getElementById('runPython_tifshpButton').addEventListener('click', function() {
+         fetch('/runPython_tifshpButton', { method: 'POST' })
+         .then(response => response.json())
+         .then(data => console.log(data));
+         });
+
+         document.getElementById('runPython_shpresultButton').addEventListener('click', function() {
+         fetch('/runPython_shpresultButton', { method: 'POST' })
+         .then(response => response.json())
+         .then(data => console.log(data));
+         });
+
+
+        function uploadFile() {
+            var fileInput = document.getElementById('fileInput');
+            fileInput.click();
+        }
+
+
+
+
+        function showCountdownPopup() {
+        // 创建一个遮罩层
+        var mask = document.createElement('div');
+        mask.style.position = 'fixed';
+        mask.style.top = 0;
+        mask.style.left = 0;
+        mask.style.right = 0;
+        mask.style.bottom = 0;
+        mask.style.background = 'rgba(0, 0, 0, 0.5)';
+        document.body.appendChild(mask);
+
+        // 创建一个弹窗
+        var popup = document.createElement('div');
+        popup.style.position = 'fixed';
+        popup.style.top = '50%';
+        popup.style.left = '50%';
+        popup.style.transform = 'translate(-50%, -50%)';
+        popup.style.background = 'white';
+        popup.style.padding = '20px';
+        popup.style.borderRadius = '5px';
+        popup.style.fontSize = '20px';
+        popup.innerHTML = '预处理中，请稍后：<span id="countdown">8</span>秒';
+        document.body.appendChild(popup);
+
+        // 倒计时关闭弹窗
+        var count = 5;
+        setInterval(function() {
+            count--;
+            if (count >= 0) {
+                document.getElementById('countdown').textContent = count;
+            } else {
+                document.body.removeChild(mask);
+                document.body.removeChild(popup);
+            }
+         }, 1000);
+
+        }
+
+
+        function showCountdownPopup1() {
+        // 创建一个遮罩层
+        var mask = document.createElement('div');
+        mask.style.position = 'fixed';
+        mask.style.top = 0;
+        mask.style.left = 0;
+        mask.style.right = 0;
+        mask.style.bottom = 0;
+        mask.style.background = 'rgba(0, 0, 0, 0.5)';
+        document.body.appendChild(mask);
+
+        // 创建一个弹窗
+        var popup = document.createElement('div');
+        popup.style.position = 'fixed';
+        popup.style.top = '50%';
+        popup.style.left = '50%';
+        popup.style.transform = 'translate(-50%, -50%)';
+        popup.style.background = 'white';
+        popup.style.padding = '20px';
+        popup.style.borderRadius = '5px';
+        popup.style.fontSize = '20px';
+        popup.innerHTML = '预处理中，请稍后：<span id="countdown">8</span>秒';
+        document.body.appendChild(popup);
+
+        // 倒计时关闭弹窗
+        var count = 30;
+        setInterval(function() {
+            count--;
+            if (count >= 0) {
+                document.getElementById('countdown').textContent = count;
+            } else {
+                document.body.removeChild(mask);
+                document.body.removeChild(popup);
+            }
+         }, 1000);
+
+        }
+
+
+
+        function handleFiles(files) {
+            var file = files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/upload', true);
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    alert(this.responseText);
+                }
+            };
+            xhr.send(formData);
+        }
+
+
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const img = document.getElementById('tif-image');
+    const canvas = document.getElementById('tif-canvas');
+    const context = canvas.getContext('2d');
+
+    img.onload = function () {
+        const url = URL.createObjectURL(img.src);
+        Tiff.initialize({
+            TIFF: {
+                initialize: function (buffer) {
+                    return new Tiff({buffer: buffer});
+                },
+                is_big_endian: function () {
+                    return false;
+                },
+                bytes_per_pixel: function () {
+                    return 1;
+                }
+            }
+        });
+
+        Tiff.open(url, function (tiff) {
+            const canvas = document.getElementById('tif-canvas');
+            const image = tiff.getImage();
+            const data = image.readRGBAImage();
+
+            canvas.width = image.getWidth();
+            canvas.height = image.getHeight();
+            const context = canvas.getContext('2d');
+            const imageData = context.createImageData(canvas.width, canvas.height);
+            imageData.data.set(data);
+            context.putImageData(imageData, 0, 0);
+        });
+    };
+});
+
+
+
+    </script>
+<script src="/static/js/china.js"></script>
+<script src="/static/js/mymap.js"></script>
+<script src="https://js.arcgis.com/3.43/"></script>
+<script src="/static/js/map.js"></script>
+</html>

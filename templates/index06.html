@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地图数据可视化</title>
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/fonts/icomoon.css">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/dijit/calcite.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/esri/themes/calcite/esri/esri.css" rel="stylesheet">
+    <link href="https://js.arcgis.com/3.43/dijit/themes/claro/claro.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.43/esri/css/esri.css">
+<!--    <script src="https://js.arcgis.com/3.43/"></script>-->
+</head>
+
+<body>
+    <div class="viewport" >
+
+        <div class="left" id="left" style="margin-top: 30px;height: 960px;width: 1200px;margin-left:120px;">
+
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        <h3 style="margin-top:5px;">NDSI : </h3>
+                            <input type="text" name="name" id="NDSI" placeholder="NDSI"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        <h3 style="margin-top:5px;">NDVI : </h3>
+                            <input type="text" name="name" id="NDVI" placeholder="NDVI"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        <h3 style="margin-top:5px;">SI_T : </h3>
+                            <input type="text" name="name" id="SI_T" placeholder="SI_T"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">BI : </h3>
+                            <input type="text" name="name" id="BI" placeholder="BI"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">SI : </h3>
+                            <input type="text" name="name" id="SI" placeholder="SI"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">SI1 : </h3>
+                            <input type="text" name="name" id="SI1" placeholder="SI1"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">SI2 : </h3>
+                            <input type="text" name="name" id="SI2" placeholder="SI2"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">SI3 : </h3>
+                            <input type="text" name="name" id="SI3" placeholder="SI3"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">S1 : </h3>
+                            <input type="text" name="name" id="S1" placeholder="S1"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">S2 : </h3>
+                            <input type="text" name="name" id="S2" placeholder="S2"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="center" style="width:30%;margin-left: -650px;margin-top:30px">
+
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">S3 : </h3>
+                            <input type="text" name="name" id="S3" placeholder="S3"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">S5 : </h3>
+                            <input type="text" name="name" id="S5" placeholder="S5"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">S6 : </h3>
+                            <input type="text" name="name" id="S6" placeholder="S6"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:430px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">Int1 : </h3>
+                            <input type="text" name="name" id="Int1" placeholder="Int1"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sales panel" style="top: 5px;width:430px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">Int2 : </h3>
+                            <input type="text" name="name" id="Int2" placeholder="Int2"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">B1 : </h3>
+                            <input type="text" name="name" id="b1" placeholder="B1"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">B2 : </h3>
+                            <input type="text" name="name" id="b2" placeholder="B2"  style="height:30px;width:250px; font-size:18px;"  value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">B3 : </h3>
+                            <input type="text" name="name" id="b3" placeholder="B3"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:400px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">B4 : </h3>
+                            <input type="text" name="name" id="b4" placeholder="B4"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="sales panel" style="top: 5px;width:430px;height:40px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="margin-top:5px;">SAVI : </h3>
+                            <input type="text" name="name" id="SAVI" placeholder="SAVI"  style="height:30px;width:250px;font-size:18px;" value="">
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="right" style="width:30%;margin-left: -30px;margin-top:30px">
+        <div class="column">
+            <div class="order panel" style="height:200px;width:550px;">
+                <div class="inner">
+                    <!-- 筛选 -->
+                    <div class="filter" style="margin-top:10px;">
+                        <a ><button onClick="PLSR()" style="width:130px;height:50px;background-color:transparent;color:white;font-size:22px;">PLSR建模</button></a>
+                        <a href="/index07"><button  style="width:130px;height:50px;background-color:transparent;color:white;font-size:22px;">折线图</button></a>
+                        <a href="/index07"><button style="width:130px;height:50px;background-color:transparent;color:white;font-size:22px;">散点图</button></a>
+                    </div>
+                    <div class="filter" style="margin-top:60px;">
+                        <a><button onClick="PLSR()" style="width:130px;height:50px;background-color:transparent;color:white;font-size:22px;">相关系数R²</button></a>
+                        <a href="/index07"><button style="width:130px;height:50px;background-color:transparent;color:white;font-size:22px;">雷达图</button></a>
+                        <a href="/index07"><button style="width:130px;height:50px;background-color:transparent;color:white;font-size:22px;">柱状图</button></a>
+                    </div>
+                    <!-- 数据 -->
+                    <div class="data">
+                        <div class="item">
+
+                        </div>
+                        <div class="item">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 销售额 -->
+            <div class="sales panel" style="top: 25px;height:140px;">
+                <div class="inner">
+                    <div class="caption"  style="color:white;text-align:center;margin-top:10px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>水溶性盐总量</h1> &nbsp;<h3 style="margin-top:2px"> </h3><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>光谱指数</h1>
+                    </div>
+                    <div class="caption"  style="color:white;margin-top:20px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>PLSR模型</h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<h3 style="margin-top:2px"> </h3><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>相关系数P²</h1>
+                    </div>
+
+                </div>
+            </div>
+
+                    <div class="monitor panel" style="top: 50px;">
+                        <div class="center">
+                            <h1 style="margin-left: 25px;font-size: 30px;color: white;">地图Web功能栏</h1>
+                        </div>
+                        <div class="i1" style="width: 20px;height: 120px; margin-left: -50px;margin-top: 40px;" >
+                            <a href="/index01">
+                                <img src="/static/images/图标1.png" alt="" width="50px">
+                                <h3 style="width: 120px;margin-left: -18px;">地图Web</h3>
+                            </a>
+
+                        </div>
+                        <div class="i2" style="width: 20px;margin-top: -120px; margin-left: 70px; " >
+                            <a href="/sqldata">
+                                <img src="/static/images/图标2.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -5px;">数据库</h3>
+                            </a>
+                        </div>
+
+                        <div class="i3" style="width: 20px;margin-top: -90px; margin-left: 180px; " >
+                            <a href="/index03">
+                                <img src="/static/images/图标3.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -15px;">地理分析</h3>
+                            </a>
+                        </div>
+                        <div class="i4" style="width: 20px;margin-top: -90px; margin-left: 290px; " >
+                            <a href="/index04">
+                                <img src="/static/images/图标4.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -5px;">缓冲区</h3>
+                            </a>
+                        </div>
+                        <div class="i5" style="width: 20px;margin-top: 50px; margin-left: -50px; " >
+                            <a href="/index05">
+                                <img src="/static/images/图标5.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -18px;">盐度反演</h3>
+                            </a>
+                        </div>
+                        <div class="i6" style="width: 20px;margin-top: -87px; margin-left: 70px; " >
+                            <a href="/index06">
+                                <img src="/static/images/图标6.png" alt="" width="50px">
+                                <h3 style="width: 50px;margin-left: 3px;">PLSR</h3>
+                            </a>
+                        </div>
+                        <div class="i7" style="width: 20px;margin-top: -87px; margin-left: 180px; " >
+                            <a href="/index07">
+                                <img src="/static/images/图标7.png" alt="" width="50px">
+                                <h3 style="width: 50px;text-align: center;">其他</h3>
+                            </a>
+                        </div>
+                        <div class="i8" style="width: 20px;margin-top: -96px; margin-left: 290px; " >
+                            <a href="/index">
+                                <img src="/static/images/图标8.png" alt="" width="50px">
+                                <h3 style="width: 80px;margin-left: -15px;margin-top: -5px;">返回主页</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function PLSR() {
+        document.getElementById('NDSI').value = '{{NDSI}}';
+        document.getElementById('NDVI').value = '{{NDVI}}';
+        document.getElementById('SI').value = '{{SI}}';
+        document.getElementById('SI_T').value = '{{SI_T}}';
+        document.getElementById('BI').value = '{{BI}}';
+        document.getElementById('SI1').value = '{{SI1}}';
+        document.getElementById('SI2').value = '{{SI2}}';
+        document.getElementById('SI3').value = '{{SI3}}';
+        document.getElementById('S1').value = '{{S1}}';
+        document.getElementById('S2').value = '{{S2}}';
+        document.getElementById('S3').value = '{{S3}}';
+        document.getElementById('S5').value = '{{S5}}';
+        document.getElementById('S6').value = '{{S6}}';
+        document.getElementById('SAVI').value = '{{SAVI}}';
+        document.getElementById('Int1').value = '{{Int1}}';
+        document.getElementById('Int2').value = '{{Int2}}';
+        document.getElementById('b1').value = '{{b1}}';
+        document.getElementById('b2').value = '{{b2}}';
+        document.getElementById('b3').value = '{{b3}}';
+        document.getElementById('b4').value = '{{b4}}';
+    }
+</script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/index.js"></script>
+
+<script src="/static/js/china.js"></script>
+<script src="/static/js/mymap.js"></script>
+<script src="https://js.arcgis.com/3.43/"></script>
+<script src="/static/js/map.js"></script>
+</html>

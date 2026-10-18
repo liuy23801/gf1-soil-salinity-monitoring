@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="UTF-8">
+    <title>更改操作</title>
+</head>
+<body>
+<center>
+    <h1>填写更改的信息</h1>
+    <form action="/chas" method="post" style="font-size:20px;">
+        <table border="3px" width="400px" >
+            {% for i in userlist %}
+            <tr>
+                <td>修改Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Id" readonly="readonly" value="{{ i.Id }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            <tr>
+                <td>采样地:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="采样地" value="{{ i.采样地 }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            <tr>
+                <td>有机质:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="有机质" value="{{ i.有机质 }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            <tr>
+                <td>全氮量:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="全氮" value="{{ i.全氮 }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            <tr>
+                <td>总磷量:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="总磷" value="{{ i.总磷 }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            <tr>
+                <td>含水率:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="含水率" value="{{ i.含水率 }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            <tr>
+                <td>全钾量:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="全钾量" value="{{ i.全钾量 }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            <tr>
+                <td >水溶性含量:<input type="text" name="水溶性盐_1" value="{{ i.水溶性盐_1 }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            <tr>
+                <td>X(经度):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="X" value="{{ i.X }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            <tr>
+                <td>Y(纬度):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Y" value="{{ i.Y }}" style="width:200px;height:25px"><br></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2" align="center"><input type="submit" ,value="确定" style="width:60px;height:30px;"></td>
+            </tr>
+        </table>
+    </form>
+</center>
+</body>
+</html>
